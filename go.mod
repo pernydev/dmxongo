@@ -6,6 +6,7 @@ require (
 	github.com/BurntSushi/toml v1.3.2 // indirect
 	github.com/OliRead/usbdmx v0.0.0-20200510141510-3b43952fa44b // indirect
 	github.com/akualab/dmx v0.0.0-20130922234952-1ec6837faba7 // indirect
+	github.com/albenik/go-serial/v2 v2.6.0 // indirect
 	github.com/bytedance/sonic v1.10.2 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.0 // indirect
@@ -20,6 +21,8 @@ require (
 	github.com/google/gousb v1.1.2 // indirect
 	github.com/google/uuid v1.4.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
+	github.com/gotmc/libusb v1.0.22 // indirect
+	github.com/gotmc/libusb/v2 v2.3.1 // indirect
 	github.com/jacobsa/go-serial v0.0.0-20180131005756-15cf729a72d4 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.5 // indirect
@@ -34,6 +37,8 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	go.bug.st/serial v1.6.1 // indirect
+	go.uber.org/atomic v1.11.0 // indirect
+	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.5.0 // indirect
 	golang.org/x/crypto v0.14.0 // indirect
 	golang.org/x/net v0.17.0 // indirect

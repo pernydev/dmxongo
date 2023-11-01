@@ -19,8 +19,7 @@ var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
 	CheckOrigin: func(r *http.Request) bool {
-		origin := r.Header.Get("Origin")
-		return origin == "http://localhost:5173"
+		return true // allow all connections
 	},
 }
 
@@ -55,7 +54,9 @@ func HTTPAPI(universe *objects.Universe, fixtures []fixtureTypes.PAR) {
 
 		id := uuid.New().String()
 		universeClients[id] = ws
-		ws.WriteJSON(universeLatest)
+
+		ws.WriteJSON(universe.ChannelValues)
+
 		ws.SetCloseHandler(func(code int, text string) error {
 			delete(universeClients, id)
 			return nil
@@ -113,8 +114,9 @@ func UniverseChanged(universe *objects.Universe) {
 	defer socketMutex.Unlock()
 
 	for _, client := range universeClients {
-		client.WriteJSON(universe)
+		client.WriteJSON(universe.ChannelValues)
 	}
+
 }
 
 func FixturesChanged(fixtures []fixtureTypes.PAR) {

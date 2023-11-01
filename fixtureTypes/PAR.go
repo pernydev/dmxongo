@@ -14,10 +14,10 @@ type PAR struct {
 }
 
 func (p *PAR) Update() {
-	p.ChannelValues[0] = p.Brightness
-	p.ChannelValues[1] = p.Color.Red
-	p.ChannelValues[2] = p.Color.Green
-	p.ChannelValues[3] = p.Color.Blue
+	p.ChannelValues[0] = p.Color.Red
+	p.ChannelValues[1] = p.Color.Green
+	p.ChannelValues[2] = p.Color.Blue
+	p.ChannelValues[3] = p.Brightness
 	p.ChannelValues[4] = p.Strobe
 
 	p.UniverseCTX.Update(p.StartingChannel, p.ChannelValues)
