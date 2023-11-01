@@ -41,6 +41,11 @@ func (p *PAR) JSON() map[string]interface{} {
 	return response
 }
 
+func (p *PAR) SetColor(color objects.Color) {
+	p.Color = color
+	p.Update()
+}
+
 func MakePAR(startingChannel int, color objects.Color, brightness int, strobe int, universeCTX objects.Universe) PAR {
 	par := PAR{
 		StartingChannel: startingChannel,

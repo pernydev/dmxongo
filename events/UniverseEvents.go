@@ -7,4 +7,5 @@ import (
 
 func UniverseChanged(universe *objects.Universe) {
 	api.UniverseChanged(universe)
+	//chips.SendUniverse(*universe)
 }
