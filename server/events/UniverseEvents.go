@@ -1,11 +1,9 @@
 package events
 
-import (
-	"dmxongo/api"
-	"dmxongo/objects"
-)
+var UniverseChangeListeners []func()
 
-func UniverseChanged(universe *objects.Universe) {
-	api.UniverseChanged(universe)
-	//chips.SendUniverse(*universe)
+func UniverseChanged() {
+	for _, listener := range UniverseChangeListeners {
+		listener()
+	}
 }

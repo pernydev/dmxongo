@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import SpeedGraph from './SpeedGraph.svelte';
+	import Buttons from './Buttons.svelte';
 
 	let fixtures = [];
 	let runFunctionDialog;
@@ -30,6 +31,8 @@
 		<input type="text" name="functionName" />
 	</label>
 </dialog>
+
+<Buttons />
 
 <style>
 	fixtures {

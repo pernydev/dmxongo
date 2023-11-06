@@ -12,6 +12,11 @@ import (
 	"strings"
 )
 
+var failPattern = [][]int{
+	{255, 0, 0, 200, 0},
+	{255, 0, 0, 0, 0},
+}
+
 func updateUniverse(dmx *dmx.DMX, message []byte) {
 	start := time.Now()
 	channels := strings.Split(string(message), ",")
@@ -41,7 +46,8 @@ func main() {
 	url := "ws://127.0.0.1:8080/ws/universe"
 	c, _, err := websocket.DefaultDialer.Dial(url, nil)
 	if err != nil {
-		log.Fatal("Dial error:", err)
+		fmt.Println("Dial error:", err)
+		Fail(dmx)
 	}
 	defer c.Close()
 
@@ -59,7 +65,24 @@ func main() {
 		}
 	}()
 
-	log.Println("### opened ###")
+	fmt.Println("### opened ###")
 	<-done
-	log.Println("### closed ###")
+
+	// display fail pattern
+	Fail(dmx)
+
+	fmt.Println("### closed ###")
+}
+
+func Fail(dmx *dmx.DMX) {
+	for i := 1; i <= 3; i++ {
+		for _, frame := range failPattern {
+			for i, channel := range frame {
+				dmx.SetData(i+1, byte(channel))
+			}
+			dmx.Send()
+			time.Sleep(500 * time.Millisecond)
+		}
+	}
+	main()
 }

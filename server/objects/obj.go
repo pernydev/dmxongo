@@ -7,6 +7,15 @@ type Color struct {
 	White int
 }
 
+func RGB(r int, g int, b int) Color {
+	return Color{
+		Red:   r,
+		Green: g,
+		Blue:  b,
+		White: 0,
+	}
+}
+
 type Universe struct {
 	ChannelValues []int
 }

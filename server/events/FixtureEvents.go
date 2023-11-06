@@ -1,12 +1,14 @@
 package events
 
-import (
-	"dmxongo/api"
-	"dmxongo/fixtureTypes"
-	"dmxongo/objects"
-)
+import "fmt"
 
-func FixturesChanged(fixtures []fixtureTypes.PAR, universe *objects.Universe) {
-	api.FixturesChanged(fixtures)
-	UniverseChanged(universe)
+var FixtureChangeListeners []func()
+
+func FixturesChanged() {
+	fmt.Println("Fixtures changed")
+	for _, listener := range FixtureChangeListeners {
+		fmt.Println("Listener called")
+		listener()
+	}
+	UniverseChanged()
 }
