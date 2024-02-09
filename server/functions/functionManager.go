@@ -2,6 +2,7 @@ package functions
 
 import (
 	"dmxongo/objects"
+	"fmt"
 	"sync"
 )
 
@@ -26,6 +27,7 @@ func NewFunction(name string, function func(stopCh <-chan struct{}), functionTyp
 }
 
 func (f *Function) Start() {
+	fmt.Println("of type", f.Type)
 	if f.Type == "basic" {
 		go f.function(nil)
 		return
@@ -66,4 +68,7 @@ var Functions = map[string]*Function{
 	"testanimation": testanimation,
 	"fire":          fire,
 	"reset":         reset,
+	"lightning":     lightning,
+	"on":            on,
+	"blackout":      blackout,
 }

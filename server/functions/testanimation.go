@@ -22,6 +22,7 @@ func testanimationFunction(stopCh <-chan struct{}) {
 				// set all the fictures to black
 				for _, fixture := range *Fixtures {
 					fixture.SetColor(objects.Color{})
+					fixture.Brightness = 255
 				}
 				events.FixturesChanged()
 
@@ -31,7 +32,7 @@ func testanimationFunction(stopCh <-chan struct{}) {
 					(*Fixtures)[fixture].SetColor(frame)
 				}
 				events.FixturesChanged()
-				time.Sleep(60 * time.Millisecond)
+				time.Sleep(4 * time.Second)
 			}
 		}
 	}

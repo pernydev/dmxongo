@@ -134,7 +134,9 @@ func HTTPAPI(universePointer *objects.Universe, fixturesPointer *[]objects.Fixtu
 
 		// start function
 		functions.Functions[functionName].Start()
-		functionsState[functionName] = true
+		if functions.Functions[functionName].Type != "basic" {
+			functionsState[functionName] = true
+		}
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 		c.JSON(200, gin.H{"status": "started"})
 

@@ -2,6 +2,7 @@ package dmx
 
 import (
 	"driver/serial"
+	"fmt"
 )
 
 type Device struct {
@@ -15,15 +16,9 @@ type DMX struct {
 	Data          []byte
 	NumOfChannels int
 	Serial        *serial.Port
-	Device        *Device
 	StartByte     []byte
 	EndByte       []byte
 }
-
-var Dummy = Device{0, 0, ""}
-var EUROLITEUSBDMX512PROCABLEINTERFACE = Device{1027, 24577, ""}
-
-var DeviceList = []Device{Dummy, EUROLITEUSBDMX512PROCABLEINTERFACE}
 
 func NewDMX(numOfChannels int, serialNumber string) (*DMX, error) {
 	dmx := &DMX{}
@@ -31,13 +26,13 @@ func NewDMX(numOfChannels int, serialNumber string) (*DMX, error) {
 	dmx.NumOfChannels = numOfChannels
 	d, err := serial.OpenPort(&serial.Config{Name: "/dev/ttyUSB0", Baud: 250000})
 	if err != nil {
+		fmt.Println("Error opening serial port:", err)
 		return nil, err
 	}
 
+	fmt.Println(d)
+
 	dmx.Serial = d
-
-	dmx.Device = &Device{0, 0, ""}
-
 	dmx.StartByte = []byte{0x7E, 0x06, 0x01, 0x02, 0x00}
 	dmx.EndByte = []byte{0xE7}
 	return dmx, nil

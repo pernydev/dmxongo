@@ -1,6 +1,8 @@
 module dmxongo
 
-go 1.20
+go 1.21
+
+toolchain go1.21.5
 
 require (
 	github.com/BurntSushi/toml v1.3.2 // indirect
@@ -20,6 +22,7 @@ require (
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/google/gousb v1.1.2 // indirect
 	github.com/google/uuid v1.4.0 // indirect
+	github.com/gopxl/beep v1.3.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/gotmc/libusb v1.0.22 // indirect
 	github.com/gotmc/libusb/v2 v2.3.1 // indirect

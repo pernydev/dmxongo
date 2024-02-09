@@ -15,6 +15,7 @@ func resetFunction(stopCh <-chan struct{}) {
 			Blue:  0,
 			White: 0,
 		}
+		(*Fixtures)[fixture].Brightness = 255
 		(*Fixtures)[fixture].Update()
 	}
 	events.FixturesChanged()

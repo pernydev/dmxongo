@@ -26,12 +26,6 @@ func fireFunction(stopCh <-chan struct{}) {
 		for _, frame := range frames {
 			select {
 			case <-stopCh:
-				// set all the fictures to black
-				for fixture := range *Fixtures {
-					(*Fixtures)[fixture].SetColor(objects.RGB(0, 0, 0))
-				}
-				events.FixturesChanged()
-
 				return
 			default:
 				for fixture := range *Fixtures {

@@ -10,6 +10,9 @@ type Fixture struct {
 	UniverseCTX     *Universe
 	Pan             int
 	Tilt            int
+	Gobo            int // Gobo wheel position
+	Focus           int // Focus value
+	GoboRotation    int // Gobo rotation speed
 }
 
 func (p *Fixture) Update() {
@@ -34,6 +37,9 @@ func (p *Fixture) JSON() map[string]interface{} {
 			"pan":  p.Pan,
 			"tilt": p.Tilt,
 		},
+		"gobo":  p.Gobo,
+		"focus": p.Focus,
+		"goRot": p.GoboRotation,
 	}
 
 	return response
@@ -44,15 +50,16 @@ func (p *Fixture) SetColor(color Color) {
 	p.Update()
 }
 
-func MakeFixture(typeName string, startingChannel int, brightness int, universeCTX *Universe) Fixture {
+func MakeFixture(typeName string, startingChannel int, brightness int, universeCTX *Universe, channelCount int) Fixture {
 	par := Fixture{
 		Type:            typeName,
 		StartingChannel: startingChannel,
 		Color:           Color{Red: 0, Green: 0, Blue: 0, White: 0},
 		Brightness:      brightness,
 		Strobe:          0,
-		ChannelValues:   make([]int, 5),
+		ChannelValues:   make([]int, channelCount),
 		UniverseCTX:     universeCTX,
+		Focus:           200,
 	}
 
 	return par
